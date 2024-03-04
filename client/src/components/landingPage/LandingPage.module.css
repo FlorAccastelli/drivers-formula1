@@ -1,0 +1,7 @@
+/* body {
+    background-image: url('./images/Ferrari_F1-75_in_Melbourne.jpg');
+} */
+
+.container {
+    backdrop-filter: blur(10px);
+}
