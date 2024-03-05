@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from '../homePage/homePage.module.css'
+import fakeCards from '../../fakeCards';
 
 function paginator(lista, perPage = 9) {
     const pages = [];
@@ -11,12 +12,14 @@ function paginator(lista, perPage = 9) {
     const pageNumbers = Math.ceil(lista.length / perPage);
 
     return {
-        perPage: perPage,
-        pageNumbers: pageNumbers,
+        perPage: perPage, //9
+        pageNumbers: pageNumbers, //8
         currentPage: 1,
-        pages: pages
+        pages: pages 
     };
 }
+
+console.log(paginator(fakeCards))
 
 
 function paginatorNav(paginador, currentPage) {
@@ -42,9 +45,20 @@ function paginatorNav(paginador, currentPage) {
           <li><a href="#" className={` ${styles.prev} ${styles.fa}`}>|&laquo;</a></li>
           <li><a href="#" className={` ${styles.prev} ${styles.fa}`}>&laquo;</a></li>
  
-          <li> <a href="#" className={styles.active}>1</a></li>
-          <li> <a href="#" >2</a></li>
-          <li> <a href="#">3</a></li>
+          {/* <li> <a href="#" className={styles.active}>{paginator(fakeCards).pages.map((p, index) => index + 1)}</a></li> */}
+          {/* <li><a href="#" >{paginator(fakeCards).pages.map((p, index) => index + 1)}</a></li> */}
+          <div>
+          {paginator(fakeCards).pages.map((p, index) => {
+            if(currentPage === (index + 1)) {
+                return <li><a href="#" className={styles.active}>{index + 1}</a></li>
+            } else {
+                console.log(index);
+                return <li><a href="#" className={styles.active}>{index + 1}</a></li>
+            }
+            })
+          }
+
+          </div>
           <li><a href="#" className={` ${styles.next} ${styles.fa}`}>&raquo;</a></li>
           <li><a href="#" className={` ${styles.next} ${styles.fa}`}>&raquo;|</a></li>
         </ul>

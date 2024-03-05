@@ -10,7 +10,7 @@ import { paginator, paginatorNav } from "../utils/paginator";
            <div className={styles.flip_card_inner}>
              <div className={`${styles.driver_card} ${styles.card_background}`} key={c.id}>
               <div className={styles.overlay_name}>
-                <div className={styles.first_name}>{c.name.forename}</div>
+                <div className={styles.first_name}>{c.name.forename} {c.name.surname}</div>
               </div>
               <img className={styles.driver_image_layer} src={c.image.url}></img>
               {/* <p> <b>Teams:</b> {c.teams}</p> */}
