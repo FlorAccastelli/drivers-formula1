@@ -1,4 +1,7 @@
-function paginator(lista, perPage = 3) {
+import React from 'react';
+import styles from '../homePage/homePage.module.css'
+
+function paginator(lista, perPage = 9) {
     const pages = [];
     for (let inicio = 0; inicio < lista.length - 1; inicio=inicio+perPage) {
         const final = inicio + perPage;
@@ -23,7 +26,7 @@ function paginatorNav(paginador, currentPage) {
         if (i === currentPage) {
             stringArmado = stringArmado + `[*${i}*]`;
         } else {
-            stringArmado = stringArmado + `[${i}]`;
+            stringArmado = stringArmado + `<li> <a href="#">${i}</li>`;
         }
     }
     //return "<< " + [stringArmado] + " >>";
@@ -33,9 +36,24 @@ function paginatorNav(paginador, currentPage) {
     if (currentPage === paginador.pages.length) {
         return `<< ${stringArmado}`;
     }
-    return `<< ${stringArmado} >>`;
+
+    return(
+        <ul className={`${styles.pagination} ${styles.modal_5}`}>
+          <li><a href="#" className={` ${styles.prev} ${styles.fa}`}>|&laquo;</a></li>
+          <li><a href="#" className={` ${styles.prev} ${styles.fa}`}>&laquo;</a></li>
+ 
+          <li> <a href="#" className={styles.active}>1</a></li>
+          <li> <a href="#" >2</a></li>
+          <li> <a href="#">3</a></li>
+          <li><a href="#" className={` ${styles.next} ${styles.fa}`}>&raquo;</a></li>
+          <li><a href="#" className={` ${styles.next} ${styles.fa}`}>&raquo;|</a></li>
+        </ul>
+    );
     
     
 }
 
-export default paginator;
+export {
+    paginator,
+    paginatorNav
+}
