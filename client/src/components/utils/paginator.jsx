@@ -23,21 +23,11 @@ console.log(paginator(fakeCards))
 
 
 function paginatorNav(paginador, currentPage) {
+    currentPage = 1;
     // "<< [1] [*2*] [3] >>"
-    var stringArmado = ""
-    for (let i = 1; i <= paginador.pages.length; i++) {
-        if (i === currentPage) {
-            stringArmado = stringArmado + `[*${i}*]`;
-        } else {
-            stringArmado = stringArmado + `<li> <a href="#">${i}</li>`;
-        }
-    }
-    //return "<< " + [stringArmado] + " >>";
-    if (currentPage === 1) {
-        return `${stringArmado} >>`;
-    }
-    if (currentPage === paginador.pages.length) {
-        return `<< ${stringArmado}`;
+
+    const handlePages = (event) => {
+        alert(event.target.text)
     }
 
     return(
@@ -52,8 +42,7 @@ function paginatorNav(paginador, currentPage) {
             if(currentPage === (index + 1)) {
                 return <li><a href="#" className={styles.active}>{index + 1}</a></li>
             } else {
-                console.log(index);
-                return <li><a href="#" className={styles.active}>{index + 1}</a></li>
+                return <li><a href="#" onClick={handlePages}>{index + 1}</a></li>
             }
             })
           }
