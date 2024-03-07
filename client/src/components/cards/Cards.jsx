@@ -1,36 +1,31 @@
 import React from "react";
 import fakeCards from "../../fakeCards";
-import styles from '../homePage/homePage.module.css'
 import { paginator, paginatorNav } from "../utils/paginator";
+import { Card } from "../card/Card";
+import styles from '../homePage/homePage.module.css';
 
-// import { Card } from "../card/Card";
-const pagCards = paginator(fakeCards)
-const Cards = pagCards.pages[0].map(c=> 
-    <div className={styles.flip_card}>
-       <div className={styles.flip_card_inner}>
-         <div className={`${styles.driver_card} ${styles.card_background}`} key={c.id}>
-          <div className={styles.overlay_name}>
-            <div className={styles.first_name}>{c.name.forename} {c.name.surname}</div>
-            <p className={styles.first_name}> <b>Teams:</b> {c.teams}</p>
-          </div>
-          <img className={styles.driver_image_layer} src={c.image.url}></img>
-         </div>
-         <div className={`${styles.details_card}`} >
-          <div className={`${styles.details_inner}`} >
-            <div className={`${styles.detail_name}`} >{c.name.forename}</div>
-          </div>
-         </div>
-       </div>
-    </div>)
+function Cards () {
+    const pagCards = paginator(fakeCards)
+const drivers = pagCards.pages[0]
 return(
     <div>
         <div className={styles.driver_cards}>
-          {Cards}
+          {drivers.map(c=> 
+          (<Card 
+            key={c.id}
+            id={c.id}
+            forename={c.name.forename}
+            surname={c.name.surname}
+            teams={c.teams}
+            image={c.image.url}
+        />))}
         </div>
       <div>
         {paginatorNav(pagCards)}
       </div>
     </div>  
 )
+}
+
 
 export default Cards;
