@@ -2,6 +2,7 @@ import React from "react";
 import fakeCards from "../../fakeCards";
 import styles from './homePage.module.css'
 import { paginator, paginatorNav } from "../utils/paginator";
+// import Cards from "../cards/Cards";
   
   export default function HomePage() {
     const pagCards = paginator(fakeCards)
@@ -11,9 +12,9 @@ import { paginator, paginatorNav } from "../utils/paginator";
              <div className={`${styles.driver_card} ${styles.card_background}`} key={c.id}>
               <div className={styles.overlay_name}>
                 <div className={styles.first_name}>{c.name.forename} {c.name.surname}</div>
+                <p className={styles.first_name}> <b>Teams:</b> {c.teams}</p>
               </div>
               <img className={styles.driver_image_layer} src={c.image.url}></img>
-              {/* <p> <b>Teams:</b> {c.teams}</p> */}
              </div>
              <div className={`${styles.details_card}`} >
               <div className={`${styles.details_inner}`} >
