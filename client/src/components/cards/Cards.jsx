@@ -4,23 +4,29 @@ import { paginator, paginatorNav } from "../utils/paginator";
 import { Card } from "../card/Card";
 import styles from '../homePage/homePage.module.css';
 import { useDispatch, useSelector } from "react-redux";
-import { getDrivers } from "../../redux/actions";
+import { getDrivers, getPage } from "../../redux/actions";
 
 function Cards (props) {
-    const allDrivers = useSelector((state) => state.allDrivers); //es lo mismo que el mapStateToProps
-    const dispatch = useDispatch();
+    const allDrivers = useSelector((state) => state.allDrivers);
+    console.log(allDrivers);
+    const driversPage = useSelector((state)=> state.driversPage) //es lo mismo que el mapStateToProps
+    console.log(driversPage)
+    const currentPage = useSelector((state)=> state.currentPage)
+    console.log(currentPage);
+    const dispatch = useDispatch(); //es lo mismo que el mapDispatchToProps
 
     const pagCards = paginator(allDrivers)
-    const drivers = pagCards.pages[0]
+   
 
     useEffect(()=> {
+        dispatch(getPage(2))
         dispatch(getDrivers())
-    }, [])
+    }, [currentPage])
 
     return(
     <div>
         <div className={styles.driver_cards}>
-          {drivers.map(c=> 
+          {driversPage.map(c=> 
           (<Card 
             key={c.id}
             id={c.id}
