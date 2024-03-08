@@ -1,8 +1,12 @@
 import { GET_DRIVERS } from "./actionTypes";
+import fakeCards from "../fakeCards";
+// import { paginator } from "../components/utils/paginator";
 
 
 const initialState = {
-    allDrivers: []
+    allDrivers: fakeCards,
+    // currentPage: paginator(allDrivers).pages[0]
+        
 }
 
 function reducer(state = initialState, { type, payload }) {
