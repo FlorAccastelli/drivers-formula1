@@ -30,13 +30,29 @@ function paginatorNav(paginador, currentPage) {
         dispatch(getPage(currentPage))
     }
 
+    const handleIncrement = (event) => {
+        dispatch(getPage(currentPage + 1))
+    }
+
+    const handleLastPage = (event) => {
+        currentPage = paginator(fakeCards).pageNumbers;
+        dispatch(getPage(currentPage));
+    }
+
+    const handleDecrement = (event) => {
+        dispatch(getPage(currentPage - 1))
+    }
+
+    const handleFirstPage = (event) => {
+        currentPage = 1;
+        dispatch(getPage(currentPage))
+    }
+
     return(
         <ul className={`${styles.pagination} ${styles.modal_5}`}>
-          <li><a href="#" className={` ${styles.prev} ${styles.fa}`}>|&laquo;</a></li>
-          <li><a href="#" className={` ${styles.prev} ${styles.fa}`}>&laquo;</a></li>
- 
-          {/* <li> <a href="#" className={styles.active}>{paginator(fakeCards).pages.map((p, index) => index + 1)}</a></li> */}
-          {/* <li><a href="#" >{paginator(fakeCards).pages.map((p, index) => index + 1)}</a></li> */}
+          <li><a href="#" onClick={handleFirstPage} className={` ${styles.prev} ${styles.fa}`}>|&laquo;</a></li>
+          <li><a href="#" onClick={handleDecrement} className={` ${styles.prev} ${styles.fa}`}>&laquo;</a></li>
+
           <div>
           {paginator(fakeCards).pages.map((p, index) => {
             if(currentPage === (index + 1)) {
@@ -46,10 +62,10 @@ function paginatorNav(paginador, currentPage) {
             }
             })
           }
-
           </div>
-          <li><a href="#" className={` ${styles.next} ${styles.fa}`}>&raquo;</a></li>
-          <li><a href="#" className={` ${styles.next} ${styles.fa}`}>&raquo;|</a></li>
+
+          <li><a href="#" onClick={handleIncrement} className={` ${styles.next} ${styles.fa}`}>&raquo;</a></li>
+          <li><a href="#" onClick={handleLastPage} className={` ${styles.next} ${styles.fa}`}>&raquo;|</a></li>
         </ul>
     );
     

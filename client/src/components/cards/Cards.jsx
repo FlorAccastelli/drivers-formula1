@@ -10,7 +10,6 @@ function Cards (props) {
     const allDrivers = useSelector((state) => state.allDrivers);
     const driversPage = useSelector((state)=> state.driversPage) //es lo mismo que el mapStateToProps
     let currentPage = useSelector((state)=> state.currentPage)
-    console.log(currentPage);
     const dispatch = useDispatch(); //es lo mismo que el mapDispatchToProps
 
     const pagCards = paginator(allDrivers)

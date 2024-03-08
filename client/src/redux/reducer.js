@@ -19,7 +19,7 @@ function reducer(state = initialState, { type, payload }) {
         case GET_PAGE:
             return {
                 ...state,
-                driversPage: paginator(state.allDrivers).pages[payload],
+                driversPage: paginator(state.allDrivers).pages[payload - 1],
                 currentPage: payload
             }
         default: 

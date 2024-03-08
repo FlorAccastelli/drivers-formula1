@@ -16,7 +16,6 @@ export const getDrivers = () => {
 }
 
 export const getPage = (pageNumber) => {
-    console.log(pageNumber)
     return {
         type: GET_PAGE,
         payload: pageNumber
