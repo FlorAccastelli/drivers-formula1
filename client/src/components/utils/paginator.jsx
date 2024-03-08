@@ -1,6 +1,8 @@
 import React from 'react';
 import styles from '../homePage/homePage.module.css'
 import fakeCards from '../../fakeCards';
+import { getPage } from '../../redux/actions';
+import { useDispatch } from 'react-redux';
 
 function paginator(lista, perPage = 9) {
     const pages = [];
@@ -19,15 +21,13 @@ function paginator(lista, perPage = 9) {
     };
 }
 
-console.log(paginator(fakeCards))
-
-
 function paginatorNav(paginador, currentPage) {
-    currentPage = 1;
+    const dispatch = useDispatch();
+    //currentPage = 1;
     // "<< [1] [*2*] [3] >>"
-
     const handlePages = (event) => {
-        alert(event.target.text)
+        currentPage = parseInt(event.target.text);
+        dispatch(getPage(currentPage))
     }
 
     return(

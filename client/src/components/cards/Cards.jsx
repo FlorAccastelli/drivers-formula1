@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 // import fakeCards from "../../fakeCards";
 import { paginator, paginatorNav } from "../utils/paginator";
 import { Card } from "../card/Card";
@@ -8,19 +8,15 @@ import { getDrivers, getPage } from "../../redux/actions";
 
 function Cards (props) {
     const allDrivers = useSelector((state) => state.allDrivers);
-    console.log(allDrivers);
     const driversPage = useSelector((state)=> state.driversPage) //es lo mismo que el mapStateToProps
-    console.log(driversPage)
-    const currentPage = useSelector((state)=> state.currentPage)
+    let currentPage = useSelector((state)=> state.currentPage)
     console.log(currentPage);
     const dispatch = useDispatch(); //es lo mismo que el mapDispatchToProps
 
     const pagCards = paginator(allDrivers)
    
-
     useEffect(()=> {
-        dispatch(getPage(2))
-        dispatch(getDrivers())
+        dispatch(getPage(currentPage))
     }, [currentPage])
 
     return(
@@ -37,7 +33,7 @@ function Cards (props) {
         />))}
         </div>
       <div>
-        {paginatorNav(pagCards)}
+        {paginatorNav(pagCards, currentPage)}
       </div>
     </div>  
 )
