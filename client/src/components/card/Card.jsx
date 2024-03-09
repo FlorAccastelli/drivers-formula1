@@ -14,7 +14,7 @@ export const Card = ({
          <div className={`${styles.driver_card} ${styles.card_background}`} key={id}>
           <div className={styles.overlay_name}>
             <div className={styles.first_name}>{forename} {surname}</div>
-            <p className={styles.first_name}> <b>Teams:</b> {teams}</p>
+            {/* <p className={styles.first_name}> <b>Teams:</b> {teams}</p> */}
           </div>
           <img className={styles.driver_image_layer} src={image}></img>
          </div>

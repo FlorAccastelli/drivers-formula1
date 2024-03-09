@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-// import fakeCards from "../../fakeCards";
 import { paginator, paginatorNav } from "../utils/paginator";
 import { Card } from "../card/Card";
 import styles from '../homePage/homePage.module.css';
@@ -27,7 +26,7 @@ function Cards (props) {
             id={c.id}
             forename={c.name.forename}
             surname={c.name.surname}
-            teams={c.teams}
+            // teams={c.teams}
             image={c.image.url}
         />))}
         </div>
