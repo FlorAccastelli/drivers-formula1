@@ -27,3 +27,9 @@ export const sortByNameAsc = () => {
         type: SORT_BY_NAME_ASC,
     }
 }
+
+export const sortByNameDesc = () => {
+    return {
+        type: SORT_BY_NAME_DESC
+    }
+}
