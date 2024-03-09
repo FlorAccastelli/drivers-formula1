@@ -1,4 +1,4 @@
-import { GET_DRIVERS, GET_PAGE, SORT_BY_NAME_ASC, SORT_BY_NAME_DESC, RESET } from "./actionTypes";
+import { GET_DRIVERS, GET_PAGE, SORT_BY_NAME_ASC, SORT_BY_NAME_DESC, SORT_BY_DOB_ASC, SORT_BY_DOB_DESC, RESET } from "./actionTypes";
 import fakeCards from "../fakeCards";
 import { paginator } from "../components/utils/paginator";
 
@@ -35,16 +35,29 @@ function reducer(state = initialState, { type, payload }) {
             return {
                 ...state,
                 driversPage: paginator(orderNameAsc).pages[0],
-                currentPage: 1,
+                currentPage: 1
             }
         case SORT_BY_NAME_DESC:
             const orderNameDesc = state.allDrivers.sort((a, b) => b.name.forename.localeCompare(a.name.forename));
             return {
                 ...state,
                 driversPage: paginator(orderNameDesc).pages[0],
-                currentPage: 1,
+                currentPage: 1
             }
-        
+        case SORT_BY_DOB_ASC:
+            const orderDobAsc = state.allDrivers.sort((a, b) => parseInt(a.dob) - parseInt(b.dob));
+            return {
+                ...state,
+                driversPage: paginator(orderDobAsc).pages[0],
+                currentPage: 1
+            }
+        case SORT_BY_DOB_DESC:
+            const orderDobDesc = state.allDrivers.sort((a, b) => parseInt(b.dob) - parseInt(a.dob));
+            return {
+                ...state,
+                driversPage: paginator(orderDobDesc).pages[0],
+                currentPage: 1
+            }
         default: 
             return state;
     }

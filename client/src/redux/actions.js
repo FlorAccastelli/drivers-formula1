@@ -1,6 +1,5 @@
-import { GET_DRIVERS, GET_PAGE, RESET, SORT_BY_NAME_ASC, SORT_BY_NAME_DESC } from './actionTypes'
+import { GET_DRIVERS, GET_PAGE, RESET, SORT_BY_DOB_ASC, SORT_BY_DOB_DESC, SORT_BY_NAME_ASC, SORT_BY_NAME_DESC } from './actionTypes'
 import fakeCards from '../fakeCards';
-import { paginator } from '../components/utils/paginator';
 
 export const getDrivers = () => {
     return (dispatch) => {
@@ -31,6 +30,18 @@ export const sortByNameAsc = () => {
 export const sortByNameDesc = () => {
     return {
         type: SORT_BY_NAME_DESC
+    }
+}
+
+export const sortByDobAsc = () => {
+    return {
+        type: SORT_BY_DOB_ASC
+    }
+}
+
+export const sortByDobDesc = () => {
+    return {
+        type: SORT_BY_DOB_DESC
     }
 }
 
