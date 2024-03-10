@@ -1,4 +1,4 @@
-import { GET_DRIVERS, GET_PAGE, RESET, SORT_BY_DOB_ASC, SORT_BY_DOB_DESC, SORT_BY_NAME_ASC, SORT_BY_NAME_DESC } from './actionTypes'
+import { FILTER_BY_TEAM, GET_DRIVERS, GET_PAGE, RESET, SORT_BY_DOB_ASC, SORT_BY_DOB_DESC, SORT_BY_NAME_ASC, SORT_BY_NAME_DESC } from './actionTypes'
 import fakeCards from '../fakeCards';
 
 export const getDrivers = () => {
@@ -48,5 +48,12 @@ export const sortByDobDesc = () => {
 export const reset = () => {
     return {
         type: RESET
+    }
+}
+
+export const filterByTeam = (team) => {
+    return {
+        type: FILTER_BY_TEAM,
+        payload: team
     }
 }

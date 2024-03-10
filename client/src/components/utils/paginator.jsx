@@ -1,8 +1,7 @@
 import React from 'react';
 import styles from '../homePage/homePage.module.css'
-import fakeCards from '../../fakeCards';
 import { getPage } from '../../redux/actions';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 function paginator(lista, perPage = 9) {
     const pages = [];
@@ -23,6 +22,7 @@ function paginator(lista, perPage = 9) {
 
 function paginatorNav(paginador, currentPage) {
     const dispatch = useDispatch();
+    const allDrivers = useSelector((state) => state.allDrivers);
     //currentPage = 1;
     // "<< [1] [*2*] [3] >>"
     const handlePages = (event) => {
@@ -35,7 +35,7 @@ function paginatorNav(paginador, currentPage) {
     }
 
     const handleLastPage = (event) => {
-        currentPage = paginator(fakeCards).pageNumbers;
+        currentPage = paginator(allDrivers).pageNumbers;
         dispatch(getPage(currentPage));
     }
 
@@ -54,7 +54,7 @@ function paginatorNav(paginador, currentPage) {
           <li><a href="#" onClick={handleDecrement} className={` ${styles.prev} ${styles.fa}`}>&laquo;</a></li>
 
           <div>
-          {paginator(fakeCards).pages.map((p, index) => {
+          {paginator(allDrivers).pages.map((p, index) => {
             if(currentPage === (index + 1)) {
                 return <li><a href="#" className={styles.active}>{index + 1}</a></li>
             } else {

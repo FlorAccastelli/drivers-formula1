@@ -1,7 +1,7 @@
 import React from "react";
 import Cards from "../cards/Cards";
 import { useDispatch } from "react-redux";
-import { sortByNameAsc, sortByNameDesc, reset, sortByDobAsc, sortByDobDesc } from "../../redux/actions";
+import { sortByNameAsc, sortByNameDesc, reset, sortByDobAsc, sortByDobDesc, filterByTeam } from "../../redux/actions";
   
   export default function HomePage() {
 
@@ -25,6 +25,10 @@ import { sortByNameAsc, sortByNameDesc, reset, sortByDobAsc, sortByDobDesc } fro
       }
     }
 
+    const handleTeamOption = (event) => {
+      dispatch(filterByTeam(event.target.value))
+    }
+
     return (
       <div>
         <select onChange={handleSortOptionChange}>
@@ -33,6 +37,19 @@ import { sortByNameAsc, sortByNameDesc, reset, sortByDobAsc, sortByDobDesc } fro
             <option value="descName">Name (Desc)</option>
             <option value="ascDob">Dob (Asc)</option>
             <option value="descDob">Dob (Desc)</option>
+        </select>
+        <select onChange={handleTeamOption}>
+            <option value="McLaren">McLaren</option>
+            <option value="Mercedes">Mercedes</option>
+            <option value="Prost">Prost</option>
+            <option value="Sauber">Sauber</option>
+            <option value="Jordan">Jordan</option>
+            <option value="Williams">Williams</option>
+            <option value="BMW">BMW</option>
+            <option value="Renault">Renault</option>
+            <option value="Minardi">Minardi</option>
+            <option value="Ferrari">Ferrari</option>
+            <option value="Alpine">Alpine</option>
         </select>
         <Cards />  
       </div>

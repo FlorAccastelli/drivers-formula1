@@ -1,4 +1,4 @@
-import { GET_DRIVERS, GET_PAGE, SORT_BY_NAME_ASC, SORT_BY_NAME_DESC, SORT_BY_DOB_ASC, SORT_BY_DOB_DESC, RESET } from "./actionTypes";
+import { GET_DRIVERS, GET_PAGE, SORT_BY_NAME_ASC, SORT_BY_NAME_DESC, SORT_BY_DOB_ASC, SORT_BY_DOB_DESC, RESET, FILTER_BY_TEAM } from "./actionTypes";
 import fakeCards from "../fakeCards";
 import { paginator } from "../components/utils/paginator";
 
@@ -7,7 +7,8 @@ const initialState = {
     allDrivers: fakeCards,
     currentPage: 1, 
     driversPage: paginator(fakeCards).pages[0],
-    originalSort: [...fakeCards]
+    originalSort: [...fakeCards],
+    // allTeams: ["McLaren", "Mercedes","Prost", "Sauber", "Jordan", "Williams", "BMW", "Renault", "Minardi", "Ferrari", "Alpine"]
 }
 
 function reducer(state = initialState, { type, payload }) {
@@ -57,6 +58,16 @@ function reducer(state = initialState, { type, payload }) {
                 ...state,
                 driversPage: paginator(orderDobDesc).pages[0],
                 currentPage: 1
+            }
+        case FILTER_BY_TEAM:
+            const filteredTeam = state.allDrivers.filter(
+                (driver) => driver.teams && driver.teams.includes(payload)
+            );
+            return {
+                ...state,
+                driversPage: paginator(filteredTeam).pages[0],
+                allDrivers: filteredTeam,
+                currentPage:1
             }
         default: 
             return state;
