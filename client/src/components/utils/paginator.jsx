@@ -16,7 +16,7 @@ function paginator(lista, perPage = 9) {
         perPage: perPage, //9
         pageNumbers: pageNumbers, //8
         currentPage: 1,
-        pages: pages 
+        pages: pages //es un array de arrays con todas las paginas divididas.
     };
 }
 

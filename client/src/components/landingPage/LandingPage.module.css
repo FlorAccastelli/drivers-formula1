@@ -1,7 +1,32 @@
-/* body {
-    background-image: url('./images/Ferrari_F1-75_in_Melbourne.jpg');
-} */
+@keyframes shake {
+    0% { transform: translate(0, 0); }
+    25% { transform: translate(2px, 2px); }
+    50% { transform: translate(-2px, -2px); }
+    75% { transform: translate(2px, -2px); }
+    100% { transform: translate(-2px, 2px); }
+  }
 
 .container {
-    backdrop-filter: blur(10px);
-}
+    background-image: url('./images/wp12208345.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    margin: 0;
+    overflow: hidden;
+  }
+
+  .image {
+    animation: shake 0.5s infinite alternate;
+    width: 105%;
+    height: 105%;
+    background-position: center, center;
+    align-items: center;
+    margin: 0;
+    mask: 
+    radial-gradient(ellipse at center, rgba(0,0,0,0) 50%, rgba(0,0,0,1) 5%);
+    display: flex;
+  }
+  

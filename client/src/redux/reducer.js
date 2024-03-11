@@ -8,7 +8,6 @@ const initialState = {
     currentPage: 1, 
     driversPage: paginator(fakeCards).pages[0],
     originalSort: [...fakeCards],
-    // allTeams: ["McLaren", "Mercedes","Prost", "Sauber", "Jordan", "Williams", "BMW", "Renault", "Minardi", "Ferrari", "Alpine"]
 }
 
 function reducer(state = initialState, { type, payload }) {
