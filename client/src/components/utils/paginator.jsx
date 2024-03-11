@@ -31,7 +31,9 @@ function paginatorNav(paginador, currentPage) {
     }
 
     const handleIncrement = (event) => {
-        dispatch(getPage(currentPage + 1))
+        if (currentPage < paginator(allDrivers).pageNumbers) {
+            dispatch(getPage(currentPage + 1))
+        }
     }
 
     const handleLastPage = (event) => {
@@ -40,7 +42,11 @@ function paginatorNav(paginador, currentPage) {
     }
 
     const handleDecrement = (event) => {
-        dispatch(getPage(currentPage - 1))
+        if (currentPage >= 2) {
+            dispatch(getPage(currentPage - 1))
+        }
+            
+        //}
     }
 
     const handleFirstPage = (event) => {

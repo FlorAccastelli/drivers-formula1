@@ -1,7 +1,7 @@
 import React from "react";
 import styles from './LandingPage.module.css';
 import { useNavigate } from "react-router-dom";
-import image from "./images/imageFerrari.png";
+// import image from "./images/imageFerrari.png";
 
 function MyButton() {
     const navigate = useNavigate();
@@ -22,7 +22,7 @@ export default function LandingPage() {
             <div className={styles.content}>
                 <h1>Drivers</h1>
                 < MyButton/>
-                <img src={image} alt="car" className={styles.image}></img>
+                {/* <img src={image} alt="car" className={styles.image}></img> */}
             </div>
         </div>
     );
