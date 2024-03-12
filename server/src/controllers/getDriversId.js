@@ -3,7 +3,7 @@ const axios = require('axios');
 
 const getDriversId = async (req, res) => {
     try{
-        const driverId = req.params.idDriver;
+        const driverId = req.params.id;
         console.log(req.params)
         console.log(`Hola, soy el driverId ${driverId}`)
         const { data } = await axios(`${URL}${driverId}`);
@@ -17,7 +17,7 @@ const getDriversId = async (req, res) => {
             return res.status(404).send("Driver no encontrado")
         }
     } catch(error) {
-        res.status(500).send(error.message);
+        res.status(500).send(error);
     }
 }
 

@@ -9,6 +9,6 @@ server.use(morgan("dev"));
 server.use(express.json());
 server.use(cors());
 
-server.use(router, ()=> {console.log("SERVIDOR ANDANDO")});
+server.use(router, ()=> {});
 
 module.exports = server;
