@@ -2,7 +2,7 @@ const axios = require('axios');
 const defaultImage = 'https://e00-marca.uecdn.es/assets/multimedia/imagenes/2024/03/08/17099126193794.jpg';
 
 const getDrivers = async (req, res) => {
-    // try {
+    try {
         let url;
         if (req.query.name) {
             let nameByQuery = req.query.name.toLowerCase()
@@ -13,24 +13,25 @@ const getDrivers = async (req, res) => {
         }
         let drivers = [];
         const response = await axios.get(url);
-        // console.log(response)
-        // axios.get(url).then(function (response) {
-        //     JSON.stringify(response)
-        // })
-        return res.status(200).json(response.data)
-    }
-// }
         
-        // if (data) {
-        //     drivers = data.map(({ id, name, image, dob, nationality, teams, description }) => ({
-        //         id,
-        //         name,
-        //         image: image ? image : defaultImage,
-        //         dob,
-        //         nationality,
-        //         teams,
-        //         description
-        //     }));
+        if (response.data) {
+            drivers = response.data.map(({ id, name, image, dob, nationality, teams, description }) => ({
+                id,
+                name,
+                image: image ? image : defaultImage,
+                dob,
+                nationality,
+                teams,
+                description
+            }));
+            return res.status(200).json(drivers)
+        } else {
+            return res.status(404).send("No existe un driver con ese nombre");
+        }
+    }catch(error){
+        res.status(500).send(error.message);
+    }
+}
 
 //             if (req.query.name) {
 //                 drivers = drivers.filter((driver) => {
