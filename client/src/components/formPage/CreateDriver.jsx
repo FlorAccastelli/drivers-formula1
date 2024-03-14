@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./createDriver.module.css"
 import { useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 export default function CreateDriver() {
     const [userData, setUserData] = useState({ 
@@ -82,7 +83,9 @@ export default function CreateDriver() {
                 </label>
                 <br />
                 <div className={styles.buttonGroup}>
-                    <button className={styles.backButton} name="back">Back home</button>
+                    <Link to='/home'>
+                        <button className={styles.backButton} name="back">Back home</button>
+                    </Link>
                     <button className={styles.createButton} name="button">Create driver</button>
                 </div>
             </form>

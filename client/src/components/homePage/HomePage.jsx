@@ -2,6 +2,7 @@ import React from "react";
 import Cards from "../cards/Cards";
 import { useDispatch } from "react-redux";
 import { sortByNameAsc, sortByNameDesc, reset, sortByDobAsc, sortByDobDesc, filterByTeam } from "../../redux/actions";
+import { Link } from "react-router-dom";
   
   export default function HomePage() {
 
@@ -31,6 +32,9 @@ import { sortByNameAsc, sortByNameDesc, reset, sortByDobAsc, sortByDobDesc, filt
 
     return (
       <div>
+        <Link to='/drivers/create'>
+          <button>Create your own driver</button>
+        </Link>
         <select onChange={handleSortOptionChange}>
             <option value="RESET">RESET</option>
             <option value="ascName">Name (Asc)</option>
