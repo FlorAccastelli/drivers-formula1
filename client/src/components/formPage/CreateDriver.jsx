@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./createDriver.module.css"
 import { useState } from "react";
+import axios from "axios";
 
 export default function CreateDriver() {
     const [userData, setUserData] = useState({ 
@@ -16,9 +17,26 @@ export default function CreateDriver() {
         setUserData({...userData, [event.target.name]:event.target.value })
     }
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault()
-        console.log(userData);
+        try {
+            const response = await axios.post('http://localhost:3003/drivers', userData)
+            if (response.status === 200) {
+                alert("Tu driver se guardó correctamente");
+                setUserData({
+                    name: "",
+                    surname: "",
+                    nationality: "",
+                    image: "",
+                    dob: "",
+                    description: ""
+                })
+            } else {
+                throw new Error('Error al guardar tu driver');
+            }
+        }catch(error){
+            console.error('Error al guardar tu driver: ', error)
+        }
     }
     
     return (
