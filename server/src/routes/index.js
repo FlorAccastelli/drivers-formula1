@@ -12,6 +12,6 @@ router.get('/drivers', getDrivers);
 router.get('/drivers/:id', getDriversId);
 router.get('/teams', getTeams);
 router.post('/drivers', postDrivers);
-router.get('/postteams', postTeams)
+router.get('/postteams', postTeams);
 
 module.exports = router;
