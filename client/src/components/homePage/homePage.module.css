@@ -321,7 +321,6 @@ body {
   }
   
   body {
-    background-color: #011212b7;
     text-align: center; 
     font-family: arial;     
   }
@@ -416,10 +415,10 @@ body {
     border-radius: 100%;
   }
   .modal-3 a:hover {
-    background-color: #4DAD16;
+    background-color: #ec2020;
   }
   .modal-3 a.active, .modal-3 a:active {
-    background-color: #37B247;
+    background-color: #ec2020;
   }
   
   .modal-4 a {
