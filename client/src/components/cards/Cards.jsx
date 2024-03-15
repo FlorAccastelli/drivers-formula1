@@ -4,6 +4,7 @@ import { Card } from "../card/Card";
 import styles from '../homePage/homePage.module.css';
 import { useDispatch, useSelector } from "react-redux";
 import { getDrivers, getPage } from "../../redux/actions";
+import { Link } from 'react-router-dom';
 
 function Cards (props) {
     const allDrivers = useSelector((state) => state.allDrivers);
@@ -18,24 +19,24 @@ function Cards (props) {
     }, [currentPage])
 
     return(
-    <div>
-        <div className={styles.driver_cards}>
-            
-          {driversPage.map(c=> 
-          (<Card 
-            key={c.id}
-            id={c.id}
-            forename={c.name.forename}
-            surname={c.name.surname}
-            // teams={c.teams}
-            image={c.image.url}
-        />))}
-        </div>
       <div>
-        {paginatorNav(pagCards, currentPage)}
-      </div>
-    </div>  
-)
+          <div className={styles.driver_cards}>
+            {driversPage.map(driver => (
+              <Link key={driver.id} to={`/detail/${driver.id}`}>
+                <Card 
+                  forename={driver.name.forename}
+                  surname={driver.name.surname}
+                  // teams={driver.teams}
+                  image={driver.image.url}
+                />
+              </Link>
+            ))}
+          </div>
+        <div>
+          {paginatorNav(pagCards, currentPage)}
+        </div>
+      </div>  
+    );
 }
 
 export default Cards;

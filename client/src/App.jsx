@@ -4,6 +4,7 @@ import { Route, Routes } from 'react-router-dom';
 import LandingPage from './components/landingPage/LandingPage';
 import HomePage from './components/homePage/HomePage';
 import CreateDriver from './components/formPage/CreateDriver';
+import Detail from './components/detail/Detail';
 
 
 export default function App() {
@@ -13,7 +14,7 @@ export default function App() {
       <Route path='/drivers/create' element={<CreateDriver/>} />
       <Route path='/' element={<LandingPage/>} />
       <Route path='/home' element={<HomePage/>}/>
-        
+      <Route path='/detail/:id' element={<Detail/>}/>
       </Routes>
     </div>
   );

@@ -72,7 +72,7 @@ body {
   position: relative;
   width: 100%;
   height: 100%;
-  transition: transform 0.8s;
+  transition: transform 0.3s;
   transform-style: preserve-3d;
   cursor: pointer;
   user-select: none;
@@ -96,7 +96,7 @@ body {
 .driver_card {
   background: black;
   position: relative;
-  filter: drop-shadow(0 0 0.5rem #0f8517);
+  filter: drop-shadow(0 0 0.5rem #ea0b0b);
 }
 
 .driver_card .helmet_image_layer {
@@ -138,6 +138,10 @@ body {
   height: 100%;
   transform-origin: bottom right;
   transform: scale(1);
+}
+
+.flip_card:hover .flip_card_inner {
+  transform: scale(1.1);
 }
 
 .driver_card .driver_image_layer:after {
@@ -231,6 +235,13 @@ body {
 }
 .driver_card.card_background:hover:after {
   transform: skew(-22.5deg) translateX(-15%);
+  transform: scale(1.1);
+  transition: transform 0.3s ease;
+}
+
+.driver_card:hover .driver_image_layer img {
+  transform: scale(1.1);
+  transition: transform 0.3s ease;
 }
 
 .details_card {
