@@ -4,15 +4,11 @@ import { useDispatch } from "react-redux";
 import { sortByNameAsc, sortByNameDesc, reset, sortByDobAsc, sortByDobDesc, filterByTeam } from "../../redux/actions";
 import { Link } from "react-router-dom";
 import SearchBar from "../searchBar/SearchBar";
-import { useState } from "react";
   
   export default function HomePage() {
 
     const dispatch = useDispatch();
-    const [drivers, setDrivers] = useState([]);
-
     
-
 
     const handleSortOptionChange = (event) => {
       if (event.target.value === "RESET") {
@@ -43,7 +39,7 @@ import { useState } from "react";
         </Link>
         < SearchBar/>
         <select onChange={handleSortOptionChange}>
-            <option value="RESET">RESET</option>
+            <option onClick={handleSortOptionChange} value="RESET">RESET</option>
             <option value="ascName">Name (Asc)</option>
             <option value="descName">Name (Desc)</option>
             <option value="ascDob">Dob (Asc)</option>

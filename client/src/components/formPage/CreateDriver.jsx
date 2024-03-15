@@ -5,7 +5,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 
 export default function CreateDriver() {
-    const [userData, setUserData] = useState({ 
+    const [driverData, setDriverData] = useState({ 
         name: "",
         surname: "",
         nationality: "",
@@ -14,14 +14,16 @@ export default function CreateDriver() {
         description: ""
     })
 
+    const [errors, setErrors] = useState({})
+
     const handleChange = (event) => {
-        setUserData({...userData, [event.target.name]:event.target.value })
+        setDriverData({...driverData, [event.target.name]:event.target.value })
     }
 
     const handleSubmit = async (event) => {
         event.preventDefault()
         try {
-            const response = await axios.post('http://localhost:3003/drivers', userData)
+            const response = await axios.post('http://localhost:3003/drivers', driverData)
             if (response.status === 200) {
                 alert("Tu driver se guardó correctamente");
                 setUserData({
@@ -46,31 +48,31 @@ export default function CreateDriver() {
             <form onSubmit={handleSubmit} className={styles.container}>
                 <label>
                     Name:
-                    <input type="text" placeholder="Ingrese un nombre" id="name" name="name" value={userData.name} onChange={handleChange}/>
+                    <input type="text" placeholder="Ingrese un nombre" id="name" name="name" value={driverData.name} onChange={handleChange}/>
                 </label>
                 <br />
                 <label>
                     Surname:
-                    <input type="text" placeholder="Ingrese un apellido" id="surname" name="surname" value={userData.surname} onChange={handleChange}/>
+                    <input type="text" placeholder="Ingrese un apellido" id="surname" name="surname" value={driverData.surname} onChange={handleChange}/>
                 </label>
                 <br />
                 <label>
                     Nationality:
-                    <input type="text" placeholder="Ingrese un país" id="nationality" name="nationality" value={userData.nationality} onChange={handleChange}/>
+                    <input type="text" placeholder="Ingrese un país" id="nationality" name="nationality" value={driverData.nationality} onChange={handleChange}/>
                 </label>
                 <br />
                 <label>
                     Image:
-                    <input type="url" placeholder="Ingrese la URL de la imagen" id="image" name="image" value={userData.image} onChange={handleChange}/>
+                    <input type="url" placeholder="Ingrese la URL de la imagen" id="image" name="image" value={driverData.image} onChange={handleChange}/>
                 </label>
                 <br />
                 <label>
                     Dob:
-                    <input type="date" placeholder="Fecha de nacimiento" id="dob" name="dob" value={userData.dob} onChange={handleChange}/>
+                    <input type="date" placeholder="Fecha de nacimiento" id="dob" name="dob" value={driverData.dob} onChange={handleChange}/>
                 </label>
                 <br />
                 <label>
-                    <textarea name="description" rows="7" cols="30" value={userData.description} onChange={handleChange}>Describa a su driver</textarea>
+                    <textarea name="description" rows="7" cols="30" value={driverData.description} onChange={handleChange}>Describa a su driver</textarea>
                 </label>
                 <br />
                 <label>
