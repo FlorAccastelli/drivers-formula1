@@ -3,7 +3,6 @@ import Cards from "../cards/Cards";
 import { useDispatch } from "react-redux";
 import { sortByNameAsc, sortByNameDesc, reset, sortByDobAsc, sortByDobDesc, filterByTeam } from "../../redux/actions";
 import { Link } from "react-router-dom";
-import axios from 'axios';
 import SearchBar from "../searchBar/SearchBar";
 import { useState } from "react";
   
@@ -12,15 +11,7 @@ import { useState } from "react";
     const dispatch = useDispatch();
     const [drivers, setDrivers] = useState([]);
 
-    const handleSearch = async (name) => {
-        try {
-            const response = await axios.get(`http://localhost:3003/drivers?name=${name}`);
-            console.log(response.data)
-            setDrivers(response.data);
-        } catch (error) {
-            console.error('Error searching drivers:', error);
-        }
-    }
+    
 
 
     const handleSortOptionChange = (event) => {
@@ -50,7 +41,7 @@ import { useState } from "react";
         <Link to='/drivers/create'>
           <button>Create your own driver</button>
         </Link>
-        < SearchBar onSearch={handleSearch}/>
+        < SearchBar/>
         <select onChange={handleSortOptionChange}>
             <option value="RESET">RESET</option>
             <option value="ascName">Name (Asc)</option>

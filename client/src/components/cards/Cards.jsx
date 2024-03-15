@@ -8,20 +8,21 @@ import { Link } from 'react-router-dom';
 
 function Cards (props) {
     const allDrivers = useSelector((state) => state.allDrivers);
-    const driversPage = useSelector((state)=> state.driversPage) //es lo mismo que el mapStateToProps
+    const driversPage = useSelector((state)=> state.driversPage)
     let currentPage = useSelector((state)=> state.currentPage)
-    const dispatch = useDispatch(); //es lo mismo que el mapDispatchToProps
+    const dispatch = useDispatch();
+
+    useEffect(()=> {
+      dispatch(getDrivers());
+      dispatch(getPage(currentPage))
+    }, [])
 
     const pagCards = paginator(allDrivers)
-   
-    useEffect(()=> {
-        dispatch(getPage(currentPage))
-    }, [currentPage])
 
     return(
       <div>
           <div className={styles.driver_cards}>
-            {driversPage.map(driver => (
+            {driversPage && driversPage.map(driver => (
               <Link key={driver.id} to={`/detail/${driver.id}`}>
                 <Card 
                   forename={driver.name.forename}

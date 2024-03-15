@@ -1,11 +1,11 @@
 import React from 'react';
 import styles from '../homePage/homePage.module.css'
-import { getPage } from '../../redux/actions';
+import { getDrivers, getPage } from '../../redux/actions';
 import { useDispatch, useSelector } from 'react-redux';
 
 function paginator(lista, perPage = 9) {
     const pages = [];
-    for (let inicio = 0; inicio < lista.length - 1; inicio=inicio+perPage) {
+    for (let inicio = 0; inicio <= lista.length - 1; inicio=inicio+perPage) {
         const final = inicio + perPage;
         pages.push(lista.slice(inicio, final))
     }
@@ -26,8 +26,8 @@ function paginatorNav(paginador, currentPage) {
     //currentPage = 1;
     // "<< [1] [*2*] [3] >>"
     const handlePages = (event) => {
-        currentPage = parseInt(event.target.text);
-        dispatch(getPage(currentPage))
+        const selectedPage = parseInt(event.target.text);
+        dispatch(getPage(selectedPage))
     }
 
     const handleIncrement = (event) => {
@@ -36,22 +36,19 @@ function paginatorNav(paginador, currentPage) {
         }
     }
 
-    const handleLastPage = (event) => {
-        currentPage = paginator(allDrivers).pageNumbers;
-        dispatch(getPage(currentPage));
+    const handleLastPage = () => {
+        const lastPage = paginator(allDrivers).pageNumbers;
+        dispatch(getPage(lastPage));
     }
 
-    const handleDecrement = (event) => {
+    const handleDecrement = () => {
         if (currentPage >= 2) {
             dispatch(getPage(currentPage - 1))
         }
-            
-        //}
     }
 
-    const handleFirstPage = (event) => {
-        currentPage = 1;
-        dispatch(getPage(currentPage))
+    const handleFirstPage = () => {
+        dispatch(getPage(1))
     }
 
     return(

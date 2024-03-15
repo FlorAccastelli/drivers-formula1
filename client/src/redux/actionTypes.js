@@ -6,3 +6,4 @@ export const RESET = "RESET";
 export const SORT_BY_DOB_ASC = "SORT_BY_DOB_ASC";
 export const SORT_BY_DOB_DESC = "SORT_BY_DOB_DESC";
 export const FILTER_BY_TEAM = "FILTER_BY_TEAM";
+export const SEARCH_BY_NAME = "SEARCH_BY_NAME";
