@@ -1,19 +1,25 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Cards from "../cards/Cards";
-import { useDispatch } from "react-redux";
-import { sortByNameAsc, sortByNameDesc, reset, sortByDobAsc, sortByDobDesc, filterByTeam } from "../../redux/actions";
+import { useDispatch, useSelector } from "react-redux";
+import { sortByNameAsc, sortByNameDesc, reset, sortByDobAsc, sortByDobDesc, filterByTeam, getDrivers, getPage } from "../../redux/actions";
 import { Link } from "react-router-dom";
 import SearchBar from "../searchBar/SearchBar";
-import { useSelector } from "react-redux";
   
   export default function HomePage() {
 
     const dispatch = useDispatch();
-    const allDrivers = useSelector((state)=>state.allDrivers)
+    const allDrivers = useSelector((state)=>state.allDrivers);
+    let currentPage = useSelector((state)=> state.currentPage)
+    const driversPage = useSelector((state)=>state.driversPage);
+
+    useEffect(()=>{
+      dispatch(getDrivers())
+      dispatch(getPage(currentPage))
+    }, [])
 
     const handleSortOptionChange = (event) => {
       if (event.target.value === "RESET") {
-        dispatch(reset());
+        dispatch(getDrivers());
       }
       if (event.target.value === "ascName") {
         dispatch(sortByNameAsc());
@@ -40,7 +46,7 @@ import { useSelector } from "react-redux";
         </Link>
         < SearchBar/>
         <select onChange={handleSortOptionChange}>
-            <option onClick={handleSortOptionChange} value="RESET">RESET</option>
+            <option value="RESET">RESET</option>
             <option value="ascName">Name (Asc)</option>
             <option value="descName">Name (Desc)</option>
             <option value="ascDob">Dob (Asc)</option>
@@ -59,11 +65,9 @@ import { useSelector } from "react-redux";
             <option value="Ferrari">Ferrari</option>
             <option value="Alpine">Alpine</option>
         </select>
-        {console.log("HOME----------------------")}
         {allDrivers.length > 0 &&
         <Cards />
         }  
-
         {allDrivers.length === 0 &&
         <h3>No hay resultados</h3>
         }

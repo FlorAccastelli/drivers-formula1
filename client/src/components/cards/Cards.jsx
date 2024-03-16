@@ -18,8 +18,6 @@ function Cards (props) {
     }, [])
 
     const pagCards = paginator(allDrivers)
-    //console.log("**************************")
-    //console.log(allDrivers);
 
       return(
         <div>

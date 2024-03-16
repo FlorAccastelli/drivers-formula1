@@ -35,6 +35,7 @@ function reducer(state = initialState, { type, payload }) {
             const orderNameAsc = state.allDrivers.sort((a, b) => a.name.forename.localeCompare(b.name.forename));
             return {
                 ...state,
+                allDrivers: orderNameAsc,
                 driversPage: paginator(orderNameAsc).pages[0],
                 currentPage: 1
             }
@@ -42,6 +43,7 @@ function reducer(state = initialState, { type, payload }) {
             const orderNameDesc = state.allDrivers.sort((a, b) => b.name.forename.localeCompare(a.name.forename));
             return {
                 ...state,
+                allDrivers: orderNameDesc,
                 driversPage: paginator(orderNameDesc).pages[0],
                 currentPage: 1
             }
@@ -49,6 +51,7 @@ function reducer(state = initialState, { type, payload }) {
             const orderDobAsc = state.allDrivers.sort((a, b) => parseInt(a.dob) - parseInt(b.dob));
             return {
                 ...state,
+                allDrivers: orderDobAsc,
                 driversPage: paginator(orderDobAsc).pages[0],
                 currentPage: 1
             }
@@ -56,11 +59,12 @@ function reducer(state = initialState, { type, payload }) {
             const orderDobDesc = state.allDrivers.sort((a, b) => parseInt(b.dob) - parseInt(a.dob));
             return {
                 ...state,
+                allDrivers: orderDobDesc,
                 driversPage: paginator(orderDobDesc).pages[0],
                 currentPage: 1
             }
         case FILTER_BY_TEAM:
-            const filteredTeam = state.allDrivers.filter(
+            const filteredTeam = state.originalSort.filter(
                 (driver) => driver.teams && driver.teams.includes(payload)
             );
             return {
@@ -70,8 +74,6 @@ function reducer(state = initialState, { type, payload }) {
                 currentPage:1
             }
         case SEARCH_BY_NAME:
-            console.log("reducer -----------------------------")
-            console.log(payload)
             return {
                 ...state,
                 driversPage: paginator(payload).pages[0],
