@@ -1,4 +1,4 @@
-import { FILTER_BY_TEAM, GET_DRIVERS, GET_PAGE, RESET, SORT_BY_DOB_ASC, SORT_BY_DOB_DESC, SORT_BY_NAME_ASC, SORT_BY_NAME_DESC, SEARCH_BY_NAME } from './actionTypes'
+import { FILTER_BY_TEAM, GET_DRIVERS, GET_PAGE, RESET, SORT_BY_DOB_ASC, SORT_BY_DOB_DESC, SORT_BY_NAME_ASC, SORT_BY_NAME_DESC, SEARCH_BY_NAME, FILTER_BY_ORIGIN } from './actionTypes'
 import axios from 'axios';
 const ENDPOINT_DRIVERS = "http://localhost:3003/drivers"
 const ENDPOINT_NAME = "http://localhost:3003/drivers?name="
@@ -72,5 +72,12 @@ export const searchByName = (name) => {
         }catch(error){
             alert(error.message);
         }
+    }
+}
+
+export const filterByOrigin = (origin) => {
+    return {
+        type: FILTER_BY_ORIGIN,
+        payload: origin
     }
 }

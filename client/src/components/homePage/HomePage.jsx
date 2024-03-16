@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import Cards from "../cards/Cards";
 import { useDispatch, useSelector } from "react-redux";
-import { sortByNameAsc, sortByNameDesc, reset, sortByDobAsc, sortByDobDesc, filterByTeam, getDrivers, getPage } from "../../redux/actions";
+import { sortByNameAsc, sortByNameDesc, reset, sortByDobAsc, sortByDobDesc, filterByTeam, getDrivers, getPage, filterByOrigin } from "../../redux/actions";
 import { Link } from "react-router-dom";
 import SearchBar from "../searchBar/SearchBar";
   
@@ -39,6 +39,10 @@ import SearchBar from "../searchBar/SearchBar";
       dispatch(filterByTeam(event.target.value))
     }
 
+    const handleOriginOption = (event) => {
+      dispatch(filterByOrigin(event.target.value))
+    }
+
     return (
       <div>
         <Link to='/drivers/create'>
@@ -64,6 +68,10 @@ import SearchBar from "../searchBar/SearchBar";
             <option value="Minardi">Minardi</option>
             <option value="Ferrari">Ferrari</option>
             <option value="Alpine">Alpine</option>
+        </select>
+        <select onChange={handleOriginOption}>
+          <option value="fromDB">Drivers (DB)</option>
+          <option value="fromAPI">Drivers (API)</option>
         </select>
         {allDrivers.length > 0 &&
         <Cards />

@@ -1,4 +1,4 @@
-import { GET_DRIVERS, GET_PAGE, SORT_BY_NAME_ASC, SORT_BY_NAME_DESC, SORT_BY_DOB_ASC, SORT_BY_DOB_DESC, RESET, FILTER_BY_TEAM, SEARCH_BY_NAME } from "./actionTypes";
+import { GET_DRIVERS, GET_PAGE, SORT_BY_NAME_ASC, SORT_BY_NAME_DESC, SORT_BY_DOB_ASC, SORT_BY_DOB_DESC, RESET, FILTER_BY_TEAM, SEARCH_BY_NAME, FILTER_BY_ORIGIN } from "./actionTypes";
 import { paginator } from "../components/utils/paginator";
 
 
@@ -79,6 +79,15 @@ function reducer(state = initialState, { type, payload }) {
                 driversPage: paginator(payload).pages[0],
                 currentPage: 1,
                 allDrivers: payload
+            }
+        case FILTER_BY_ORIGIN:
+            const filteredCards = state.originalSort.filter((driver)=> driver.origin && driver.origin === payload);
+            console.log(payload)
+            return {
+                ...state,
+                driversPage: paginator(filteredCards).pages[0],
+                allDrivers: filteredCards,
+                currentPage: 1
             }
         default: 
             return state;
