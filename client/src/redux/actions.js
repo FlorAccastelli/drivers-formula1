@@ -67,7 +67,7 @@ export const searchByName = (name) => {
             const { data } = await axios.get(`${ENDPOINT_NAME}${name}`);
             return dispatch ({
                 type: SEARCH_BY_NAME,
-                payload: data,
+                payload: data
             });
         }catch(error){
             alert(error.message);

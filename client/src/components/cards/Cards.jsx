@@ -18,26 +18,30 @@ function Cards (props) {
     }, [])
 
     const pagCards = paginator(allDrivers)
+    //console.log("**************************")
+    //console.log(allDrivers);
 
-    return(
-      <div>
-          <div className={styles.driver_cards}>
-            {driversPage && driversPage.map(driver => (
-              <Link key={driver.id} to={`/detail/${driver.id}`}>
-                <Card 
-                  forename={driver.name.forename}
-                  surname={driver.name.surname}
-                  // teams={driver.teams}
-                  image={driver.image.url}
-                />
-              </Link>
-            ))}
-          </div>
+      return(
         <div>
-          {paginatorNav(pagCards, currentPage)}
-        </div>
-      </div>  
-    );
+            <div className={styles.driver_cards}>
+              {driversPage && driversPage.map(driver => (
+                <Link key={driver.id} to={`/detail/${driver.id}`}>
+                  <Card 
+                    forename={driver.name && driver.name.forename}
+                    surname={driver.name && driver.name.surname}
+                    // teams={driver.teams}
+                    image={driver.image && driver.image.url}
+                  />
+                </Link>
+              ))}
+            </div>
+          <div>
+            {paginatorNav(pagCards, currentPage)}
+          </div>
+        </div>  
+      );
+        
+    
 }
 
 export default Cards;

@@ -70,9 +70,8 @@ function reducer(state = initialState, { type, payload }) {
                 currentPage:1
             }
         case SEARCH_BY_NAME:
-            console.log("**************************")
-            console.log(paginator(payload).pages[0])
-            console.log("**************************")
+            console.log("reducer -----------------------------")
+            console.log(payload)
             return {
                 ...state,
                 driversPage: paginator(payload).pages[0],

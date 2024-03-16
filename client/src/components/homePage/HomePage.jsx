@@ -4,11 +4,12 @@ import { useDispatch } from "react-redux";
 import { sortByNameAsc, sortByNameDesc, reset, sortByDobAsc, sortByDobDesc, filterByTeam } from "../../redux/actions";
 import { Link } from "react-router-dom";
 import SearchBar from "../searchBar/SearchBar";
+import { useSelector } from "react-redux";
   
   export default function HomePage() {
 
     const dispatch = useDispatch();
-    
+    const allDrivers = useSelector((state)=>state.allDrivers)
 
     const handleSortOptionChange = (event) => {
       if (event.target.value === "RESET") {
@@ -58,7 +59,14 @@ import SearchBar from "../searchBar/SearchBar";
             <option value="Ferrari">Ferrari</option>
             <option value="Alpine">Alpine</option>
         </select>
-        <Cards />  
+        {console.log("HOME----------------------")}
+        {allDrivers.length > 0 &&
+        <Cards />
+        }  
+
+        {allDrivers.length === 0 &&
+        <h3>No hay resultados</h3>
+        }
       </div>
     )
   }
