@@ -1,64 +1,130 @@
-.container {
-    width: 50%;
-    margin: auto;
-    background-color: #ffffff;
+  .container {
+    width: 40%;
+    margin: 30px auto;
+    margin-left: 10%;
+    background-color: #111;
     padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+    border-radius: 20px;
+    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.5);
+    text-align: left;
     filter: drop-shadow(0 0 0.5rem #ea0b0b);
-    
   }
   
   input[type="text"],
   input[type="url"],
   textarea,
-  select {
-    width: 100%;
-    padding: 10px;
+  select,
+  input[type="date"] {
+    width: calc(100% - 20px);
+    padding: 12px;
     margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box;
+    border: none;
+    border-radius: 10px;
+    background-color: #222;
+    color: #aaa;
+    font-size: 16px;
+    font-family: 'Arial', sans-serif;
   }
   
-  input[type="date"] {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box;
+  input[type="text"]:focus,
+  input[type="url"]:focus,
+  textarea:focus,
+  select:focus,
+  input[type="date"]:focus {
+    outline: none;
+    box-shadow: 0px 0px 10px 0px rgba(255, 0, 0, 0.3);
+  }
+  
+  .input-wrapper {
+    position: relative;
+  }
+  
+  .input-wrapper label {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    color: #aaa;
+    transition: all 0.3s ease;
+    pointer-events: none;
+    font-size: 12px;
+  }
+  
+  .input-wrapper input:focus + label,
+  .input-wrapper textarea:focus + label,
+  .input-wrapper select:focus + label,
+  .input-wrapper input:not(:placeholder-shown) + label,
+  .input-wrapper textarea:not(:placeholder-shown) + label,
+  .input-wrapper select:not(:placeholder-shown) + label {
+    top: -15px;
+    font-size: 12px;
+    color: #f00;
+  }
+
+  textarea::placeholder {
+    color: #aaa;
+    font-size: 16px;
+    font-family: 'Arial', sans-serif;
+  }
+  
+
+  .warning,
+.danger {
+  font-size: 12px;
+}
+  
+  .warning {
+    border: 2px solid #f00;
+  }
+  
+  .danger {
+    color: #f00;
   }
   
   .buttonGroup {
     display: flex;
     justify-content: space-between;
+    margin-top: 15px;
+  }
+  
+  .createButton,
+  .backButton {
+    padding: 10px 30px;
+    font-size: 18px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
   }
   
   .createButton {
-    background-color: #5de05d; /* Cambia este color si lo deseas */
-    color: #ffffff;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+    background-color: #ff0000;
+    color: #fff;
   }
   
   .createButton:hover {
-    background-color: #008000; /* Cambia este color si lo deseas */
+    background-color: #cc0000;
   }
   
   .backButton {
-    background-color: #ff0000; /* Cambia este color si lo deseas */
-    color: #ffffff;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+    background-color: #000;
+    color: #fff;
   }
   
   .backButton:hover {
-    background-color: #800000; /* Cambia este color si lo deseas */
+    background-color: #333;
   }
+
+  .background {
+    background-image: url('../landingPage/images/gratis-png-banderas-de-carreras-de-coches-automovilismo-formula-1-coche-removebg-preview.png');
+    position: relative;
+    background-repeat: no-repeat;
+    background-size: 40%;
+    background-position: right bottom;
+  }
+  
+  
+  
+  
+
+  
+  
