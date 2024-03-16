@@ -5,19 +5,21 @@ const { Driver } = require('../db');
 const getDrivers = async (req, res) => {
     try {
         let url;
+        let queryCondition = {raw: true};
         if (req.query.name) {
             let nameByQuery = req.query.name.toLowerCase()
             nameByQuery = nameByQuery[0].toUpperCase() + nameByQuery.slice(1);
+
             url = `http://localhost:5000/drivers?name.forename=${nameByQuery}`;
+            queryCondition = { where: {name: nameByQuery}, raw: true}
         } else {
             url = 'http://localhost:5000/drivers';
+
         }
         
         const response  = await axios.get(url);
-        //const driversDB = await Driver.findAll({raw: true});
 
-
-        const driversDB = (await Driver.findAll({raw: true})).map((driver) => {
+        const driversDB = (await Driver.findAll(queryCondition)).map((driver) => {
             return ({
             id: driver.id, 
             name: {forename:driver.name, 
@@ -26,10 +28,10 @@ const getDrivers = async (req, res) => {
             dob: driver.dob,
             nationality: driver.nationality,
             teams: driver.teams,
-            description: driver.description
+            description: driver.description,
+            fromDB: true
             })
         })
-        
         
             const driversAPI = response.data.map(({ id, name, image, dob, nationality, teams, description }) => ({
                 id,
@@ -38,7 +40,8 @@ const getDrivers = async (req, res) => {
                 dob,
                 nationality,
                 teams,
-                description
+                description,
+                fromDB: false
             }));
 
             
