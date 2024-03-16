@@ -4,8 +4,6 @@ const axios = require('axios');
 const getDriversId = async (req, res) => {
     try{
         const driverId = req.params.id;
-        console.log(req.params)
-        console.log(`Hola, soy el driverId ${driverId}`)
         const { data } = await axios(`${URL}${driverId}`);
         
 
