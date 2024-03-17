@@ -19,14 +19,14 @@ function Detail() {
         .catch(error => console.error(error));
     }, [id]);
 
-  return <div className={styles.container}>
-    <h2>ID: { driver.id } </h2>
-    <h2>Name: {driver.name && `${driver.name.forename} ${driver.name.surname}`} </h2>
-    <h4>Nationality: { driver.nationality }</h4>
-    <h4>Dob: { driver.dob }</h4>
-    <h4>Description: { driver.description }</h4>
-    <h4>Teams: { driver.teams }</h4>
-    <img src={driver.image && driver.image.url} alt={driver.name && `${driver.name.forename} ${driver.name.surname}`} />
+  return <div className={`${styles.container} ${styles.detailContainer}`}>
+    <h2>{ driver.id }</h2>
+    <h2>{driver.name && `${driver.name.forename} ${driver.name.surname}`} </h2>
+    <h4>{ driver.nationality }</h4>
+    <h4>{ driver.dob }</h4>
+    <h4>{ driver.description }</h4>
+    <h4>{ driver.teams }</h4>
+    <img className={styles.detailImage} src={driver.image && driver.image.url} alt={driver.name && `${driver.name.forename} ${driver.name.surname}`} />
     <br />
     <Link to={'/home'}>
       <button>Back home</button>
