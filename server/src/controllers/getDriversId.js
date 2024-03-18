@@ -3,7 +3,7 @@ const axios = require('axios');
 const { Driver } = require('../db')
 
 const getDriversId = async (req, res) => {
-    // try{
+    try{
         const driverId = req.params.id;
     
         if(req.params.id.includes("-")) {
@@ -28,11 +28,11 @@ const getDriversId = async (req, res) => {
         }
          
             
-        // return res.status(404).send("Driver no encontrado")
-    // } catch(error) {
+        return res.status(404).send("Driver no encontrado")
+    } catch(error) {
 
-    //     res.status(500).send(error);
-    // }
+        res.status(500).send(error);
+    }
 }
 
 module.exports = getDriversId;

@@ -1,5 +1,5 @@
 const axios = require('axios');
-const defaultImage = 'https://e00-marca.uecdn.es/assets/multimedia/imagenes/2024/03/08/17099126193794.jpg';
+const defaultImage = {url: 'https://e00-marca.uecdn.es/assets/multimedia/imagenes/2024/03/08/17099126193794.jpg'};
 const { Driver } = require('../db');
 
 const getDrivers = async (req, res) => {
@@ -38,7 +38,7 @@ const getDrivers = async (req, res) => {
             const driversAPI = response.data.map(({ id, name, image, dob, nationality, teams, description }) => ({
                 id,
                 name,
-                image: image || defaultImage,
+                image: (image && image.url) ? image : defaultImage,
                 dob,
                 nationality,
                 teams,
