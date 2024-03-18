@@ -4,6 +4,7 @@ import { useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import validation from "./validation";
+import Teams from "../teams/Teams";
 
 export default function CreateDriver() {
     const [driverData, setDriverData] = useState({ 
@@ -12,7 +13,8 @@ export default function CreateDriver() {
         nationality: "",
         image: "",
         dob: "",
-        description: ""
+        description: "",
+        teams: []
     })
 
     const [errors, setErrors] = useState({})
@@ -29,13 +31,14 @@ export default function CreateDriver() {
             const response = await axios.post('http://localhost:3003/drivers', driverData)
             if (response.status === 200) {
                 alert("Tu driver se guardó correctamente");
-                setUserData({
+                setDriverData({
                     name: "",
                     surname: "",
                     nationality: "",
                     image: "",
                     dob: "",
-                    description: ""
+                    description: "",
+                    teams: ""
                 })
             } else {
                 throw new Error('Error al guardar tu driver');
@@ -87,11 +90,7 @@ export default function CreateDriver() {
                 <br />
                 <label>
                     Teams asociados:
-                    <select name="select" multiple="multiple" size="5">
-                        <option value="8a2277b2-7698-42ad-9845-a916fb3a7737">Veritas</option>
-                        <option value="951fbc23-e0c3-44e1-8517-9248408af497">JBW</option>
-                        <option value="6b8b719e-072d-478b-a661-0989ded3c015">Talbot-Lago</option>
-                    </select>
+                    <Teams value={driverData.teams}/>
                 </label>
                 <br />
                 <div className={styles.buttonGroup}>

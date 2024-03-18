@@ -16,7 +16,7 @@ function Detail() {
             if(data.id) setDriver(data)
             else alert('No hay personajes con ese ID')
         })
-        .catch(error => console.error(error));
+        // .catch(error => console.error(error));
     }, [id]);
 
   return <div className={`${styles.container} ${styles.detailContainer}`}>

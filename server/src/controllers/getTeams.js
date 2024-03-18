@@ -11,16 +11,18 @@ const getTeams = async (req, res) => {
         }
         
         const allTeams = data.map(driver => driver.teams ? driver.teams.split(',').map(team => team.trim()) : []).flat();
-        const uniqueTeams = [...new Set(allTeams)]; // Se eliminan los equipos duplicados
+        const uniqueTeams = [...new Set(allTeams)];
 
-         const teams = await Promise.all(uniqueTeams.map(async t => {
+         let teams = await Promise.all(uniqueTeams.map(async t => {
             try{
                 return await Team.findOrCreate({ where: { name: t } });
             }catch (error){
                 console.error("Error al encontrar o crear el equipo:", error);
             }
         })); 
-        return res.status(200).json(teams);
+        teams = await Team.findAll({raw: true})
+        //console.log(teams)
+        return res.status(200).json(teams.slice(0, 300));
     } catch (error) {
         console.error("Error al obtener los equipos:", error);
         return res.status(500).json({ message: "Error al obtener los equipos." });

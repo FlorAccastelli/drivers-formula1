@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { sortByNameAsc, sortByNameDesc, reset, sortByDobAsc, sortByDobDesc, filterByTeam, getDrivers, getPage, filterByOrigin } from "../../redux/actions";
 import { Link } from "react-router-dom";
 import SearchBar from "../searchBar/SearchBar";
+import Teams from "../teams/Teams";
   
   export default function HomePage() {
 
@@ -35,10 +36,6 @@ import SearchBar from "../searchBar/SearchBar";
       }
     }
 
-    const handleTeamOption = (event) => {
-      dispatch(filterByTeam(event.target.value))
-    }
-
     const handleOriginOption = (event) => {
       dispatch(filterByOrigin(event.target.value))
     }
@@ -56,19 +53,7 @@ import SearchBar from "../searchBar/SearchBar";
             <option value="ascDob">Dob (Asc)</option>
             <option value="descDob">Dob (Desc)</option>
         </select>
-        <select onChange={handleTeamOption}>
-            <option value="McLaren">McLaren</option>
-            <option value="Mercedes">Mercedes</option>
-            <option value="Prost">Prost</option>
-            <option value="Sauber">Sauber</option>
-            <option value="Jordan">Jordan</option>
-            <option value="Williams">Williams</option>
-            <option value="BMW">BMW</option>
-            <option value="Renault">Renault</option>
-            <option value="Minardi">Minardi</option>
-            <option value="Ferrari">Ferrari</option>
-            <option value="Alpine">Alpine</option>
-        </select>
+        <Teams />
         <select onChange={handleOriginOption}>
           <option value="fromDB">Drivers (DB)</option>
           <option value="fromAPI">Drivers (API)</option>
