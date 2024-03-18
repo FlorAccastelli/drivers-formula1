@@ -6,12 +6,14 @@ const getDrivers = async (req, res) => {
     try {
         let url;
         let queryCondition = {raw: true};
+        let queryByName = false;
         if (req.query.name) {
             let nameByQuery = req.query.name.toLowerCase()
             nameByQuery = nameByQuery[0].toUpperCase() + nameByQuery.slice(1);
 
             url = `http://localhost:5000/drivers?name.forename=${nameByQuery}`;
-            queryCondition = { where: {name: nameByQuery}, raw: true}
+            queryCondition = { where: {name: nameByQuery}, raw: true, limit: 15}
+            queryByName = true;
         } else {
             url = 'http://localhost:5000/drivers';
 
@@ -29,7 +31,7 @@ const getDrivers = async (req, res) => {
             nationality: driver.nationality,
             teams: driver.teams,
             description: driver.description,
-            fromDB: true
+            origin: "fromDB"
             })
         })
         
@@ -41,14 +43,21 @@ const getDrivers = async (req, res) => {
                 nationality,
                 teams,
                 description,
-                fromDB: false
+                origin: "fromAPI"
             }));
 
             
             console.log(driversAPI)
-            return res.status(200).json([...driversDB, ...driversAPI])
-  
-           // return res.status(404).send("No existe un driver con ese nombre");
+            let result = [];
+            if(queryByName) {
+                result = [...driversDB, ...driversAPI].slice(0, 15);
+                if (!result || result.length === 0) {
+                    return res.status(200).json([]) //dsps corregir
+                }
+            } else {
+                result = [...driversDB, ...driversAPI];
+            }
+            return res.status(200).json(result);
 
     }catch(error){
         res.status(500).send(error.message);
