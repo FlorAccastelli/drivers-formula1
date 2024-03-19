@@ -1,10 +1,10 @@
 import React from "react";
 import styles from "./createDriver.module.css"
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import validation from "./validation";
-import Teams from "../teams/Teams";
+const URL = 'http://localhost:3003/teams'
 
 export default function CreateDriver() {
     const [driverData, setDriverData] = useState({ 
@@ -14,10 +14,21 @@ export default function CreateDriver() {
         image: "",
         dob: "",
         description: "",
-        teams: ["a03defca-028b-47e8-b779-ae635d0b6d71"]
+        teams: []
     })
 
+    const [teams, setTeams] = useState([]);
+
+    useEffect( ()=>{
+         axios.get(URL)
+        .then(({ data })=>{
+            setTeams(data)
+            })
+        .catch(error => console.error(error));
+    }, []);
+
     const [errors, setErrors] = useState({})
+
 
     const handleChange = (event) => {
         setErrors(validation({...driverData, [event.target.name]:event.target.value }))
@@ -94,8 +105,13 @@ export default function CreateDriver() {
                 <br />
                 <label>
                     Teams asociados:
-                    <Teams value={driverData.teams}/>
+                    <select size="5" multiple onChange={(event) => setDriverData({ ...driverData, teams: Array.from(event.target.selectedOptions, option => option.value) })}>
+                        {teams.map((t) => {
+                            return <option key={t.id} value={t.id}>{t.name}</option>
+                        })}
+                    </select>
                 </label>
+                { errors.teams && <p className={styles.danger}>{errors.teams}</p> } 
                 <br />
                 <div className={styles.buttonGroup}>
                     <Link to='/home'>

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import axios from "axios";
 const URL = 'http://localhost:3003/teams'
-import { filterByTeam, getDrivers } from "../../redux/actions";
+import { filterByTeam } from "../../redux/actions";
 
 function Teams (props) {
 

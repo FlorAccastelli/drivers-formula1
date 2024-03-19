@@ -13,18 +13,16 @@ function paginator(lista, perPage = 9) {
     const pageNumbers = Math.ceil(lista.length / perPage);
 
     return {
-        perPage: perPage, //9
-        pageNumbers: pageNumbers, //8
+        perPage: perPage, 
+        pageNumbers: pageNumbers, 
         currentPage: 1,
-        pages: pages //es un array de arrays con todas las paginas divididas.
+        pages: pages 
     };
 }
 
 function paginatorNav(paginador, currentPage) {
     const dispatch = useDispatch();
     const allDrivers = useSelector((state) => state.allDrivers);
-    //currentPage = 1;
-    // "<< [1] [*2*] [3] >>"
     const handlePages = (event) => {
         const selectedPage = parseInt(event.target.text);
         dispatch(getPage(selectedPage))
@@ -52,12 +50,17 @@ function paginatorNav(paginador, currentPage) {
     }
 
     return(
-        <ul className={`${styles.pagination} ${styles.modal_5}`}>
-          <li><a href="#" onClick={handleFirstPage} className={` ${styles.prev} ${styles.fa}`}>|&laquo;</a></li>
-          <li><a href="#" onClick={handleDecrement} className={` ${styles.prev} ${styles.fa}`}>&laquo;</a></li>
 
+            <ul className={`${styles.pagination} ${styles.modal_5}`}>
+                {currentPage > 1 && 
+                <div>
+                <li><a href="#" onClick={handleFirstPage} className={` ${styles.prev} ${styles.fa}`}>|&laquo;</a></li>
+                <li><a href="#" onClick={handleDecrement} className={` ${styles.prev} ${styles.fa}`}>&laquo;</a></li>
+                </div>
+                }
           <div>
-          {paginator(allDrivers).pages.map((p, index) => {
+
+          {paginator(allDrivers).pages.map((p, index)=> index).slice((currentPage < 2 ? 0 :currentPage - 2), currentPage + 2).map(( index) => {
             if(currentPage === (index + 1)) {
                 return <li><a href="#" className={styles.active}>{index + 1}</a></li>
             } else {
@@ -66,9 +69,12 @@ function paginatorNav(paginador, currentPage) {
             })
           }
           </div>
-
+          {currentPage < paginator(allDrivers).pages.length &&
+          <div>
           <li><a href="#" onClick={handleIncrement} className={` ${styles.next} ${styles.fa}`}>&raquo;</a></li>
           <li><a href="#" onClick={handleLastPage} className={` ${styles.next} ${styles.fa}`}>&raquo;|</a></li>
+          </div>
+        }
         </ul>
     );
     
