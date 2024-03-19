@@ -13,7 +13,6 @@ function Cards (props) {
     const dispatch = useDispatch();
 
     useEffect(()=> {
-      dispatch(getDrivers());
       dispatch(getPage(currentPage))
     }, [])
 
@@ -27,7 +26,7 @@ function Cards (props) {
                   <Card 
                     forename={driver.name && driver.name.forename}
                     surname={driver.name && driver.name.surname}
-                    // teams={driver.teams}
+                    teams={driver.teams}
                     image={driver.image && driver.image.url}
                   />
                 </Link>

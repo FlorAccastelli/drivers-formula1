@@ -14,7 +14,7 @@ export default function CreateDriver() {
         image: "",
         dob: "",
         description: "",
-        teams: []
+        teams: ["a03defca-028b-47e8-b779-ae635d0b6d71"]
     })
 
     const [errors, setErrors] = useState({})
@@ -27,6 +27,10 @@ export default function CreateDriver() {
 
     const handleSubmit = async (event) => {
         event.preventDefault()
+        if (Object.keys(errors).length > 0) {
+            alert("Faltan datos");
+            return;
+        }
         try {
             const response = await axios.post('http://localhost:3003/drivers', driverData)
             if (response.status === 200) {
@@ -38,7 +42,7 @@ export default function CreateDriver() {
                     image: "",
                     dob: "",
                     description: "",
-                    teams: ""
+                    teams: []
                 })
             } else {
                 throw new Error('Error al guardar tu driver');

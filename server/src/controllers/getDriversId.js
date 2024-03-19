@@ -16,6 +16,9 @@ const getDriversId = async (req, res) => {
                 const driver = { id, name, dob, nationality, teams, description };
                 driver.image = img;
                 driver.name = nameDriver;
+                // console.log(await driverDB.getTeams())
+                // const _teams = await driverDB.getTeams();
+                // driver.teams = _teams
                 // console.log(driver)
                 return res.status(200).json(driver)
             }
@@ -26,6 +29,7 @@ const getDriversId = async (req, res) => {
                 const driver = { id, name, image, dob, nationality, teams, description };
                 return res.status(200).json(driver)
             }
+
         }
          
             

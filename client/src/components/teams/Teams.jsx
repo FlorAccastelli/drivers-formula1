@@ -13,9 +13,8 @@ function Teams (props) {
          axios.get(URL)
         .then(({ data })=>{
             setTeams(data)
-            // console.log(data)
             })
-        // .catch(error => console.error(error));
+        .catch(error => console.error(error));
     }, []);
 
     const handleTeamOption = (event) => {

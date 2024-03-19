@@ -7,6 +7,8 @@ const initialState = {
     currentPage: 1, 
     driversPage: [],
     originalSort: [],
+    selectedTeam: "",
+    selectedOrigin: ""
 }
 
 function reducer(state = initialState, { type, payload }) {
@@ -27,6 +29,8 @@ function reducer(state = initialState, { type, payload }) {
         case RESET:
             return {
                 ...state,
+                selectedOrigin: "",
+                selectedTeam: "",
                 driversPage: paginator(state.originalSort).pages[0],
                 allDrivers: [...state.originalSort],
                 currentPage: 1
@@ -64,11 +68,18 @@ function reducer(state = initialState, { type, payload }) {
                 currentPage: 1
             }
         case FILTER_BY_TEAM:
-            const filteredTeam = state.originalSort.filter(
+            let filteredDrivers = [...state.originalSort];
+
+            if(state.selectedOrigin.length > 0) {
+                filteredDrivers = filteredDrivers.filter((driver)=> driver.origin && driver.origin === state.selectedOrigin);
+            }
+
+            const filteredTeam = filteredDrivers.filter(
                 (driver) => driver.teams && driver.teams.includes(payload)
             );
             return {
                 ...state,
+                selectedTeam: payload,
                 driversPage: paginator(filteredTeam).pages[0],
                 allDrivers: filteredTeam,
                 currentPage:1
@@ -81,10 +92,19 @@ function reducer(state = initialState, { type, payload }) {
                 allDrivers: payload
             }
         case FILTER_BY_ORIGIN:
-            const filteredCards = state.originalSort.filter((driver)=> driver.origin && driver.origin === payload);
-            console.log(payload)
+
+            let filteredDriversByTeam = [...state.originalSort]
+
+            if(state.selectedTeam.length > 0) {
+               filteredDriversByTeam = filteredDriversByTeam.filter((driver)=> driver.teams && driver.teams.includes(state.selectedTeam)
+            );
+            }
+
+            const filteredCards = filteredDriversByTeam.filter((driver)=> driver.origin && driver.origin === payload);
+
             return {
                 ...state,
+                selectedOrigin: payload,
                 driversPage: paginator(filteredCards).pages[0],
                 allDrivers: filteredCards,
                 currentPage: 1

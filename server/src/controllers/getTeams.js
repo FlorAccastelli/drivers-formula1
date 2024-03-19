@@ -21,7 +21,7 @@ const getTeams = async (req, res) => {
             }
         })); 
         teams = await Team.findAll({raw: true})
-        //console.log(teams)
+
         return res.status(200).json(teams.slice(0, 300));
     } catch (error) {
         console.error("Error al obtener los equipos:", error);

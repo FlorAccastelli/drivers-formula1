@@ -1,5 +1,4 @@
 const charsRegex = /^[a-zA-Z\s]+$/
-const urlRegex = /^(ftp|http|https):\/\/[^ "]+$/;
 
 function validation (data) {
     const errors = {};
@@ -8,7 +7,6 @@ function validation (data) {
     if(data.surname.length > 30) errors.surname = "La longitud debe ser de 30 caracteres como máximo";
     if(!data.surname) errors.surname = "Campo requerido";
     if(!data.nationality) errors.nationality = "Se requiere asignar un país";
-    if(urlRegex.test(data.image)) errors.image = "Asignar URL correctamente";
     if(!data.image) errors.image = "Campo requerido";
     if (!data.dob) errors.dob = "Se requiere ingresar la fecha de nacimiento";
     else {

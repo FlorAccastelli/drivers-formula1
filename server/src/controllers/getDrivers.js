@@ -47,7 +47,7 @@ const getDrivers = async (req, res) => {
             }));
 
             
-            console.log(driversAPI)
+
             let result = [];
             if(queryByName) {
                 result = [...driversDB, ...driversAPI].slice(0, 15);
