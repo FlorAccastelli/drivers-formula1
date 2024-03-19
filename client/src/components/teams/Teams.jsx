@@ -23,7 +23,8 @@ function Teams (props) {
 
       return(
         <div>
-            <select size="5" onChange={handleTeamOption}>
+            <select size="5" onChange={handleTeamOption} defaultValue="filterByTeam">
+                <option value="filterByTeam" disabled={true}>FILTER BY TEAM</option>
             {teams.map((t) => {
                 return <option key={t.id} value={t.name}>{t.name}</option>
             })}

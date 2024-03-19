@@ -8,7 +8,7 @@ const {
 } = process.env;
 
 const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/drivers`, {
-  logging: false, 
+  logging: console.log, 
   native: false, 
 });
 const basename = path.basename(__filename);
@@ -30,8 +30,8 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 const { Driver, Team } = sequelize.models;
 
-Driver.belongsToMany(Team, { through: 'driver_team' });
-Team.belongsToMany(Driver, { through: 'driver_team' });
+Driver.belongsToMany(Team, { through: 'DriverTeam' });
+Team.belongsToMany(Driver, { through: 'DriverTeam' });
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');

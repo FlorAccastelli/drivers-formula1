@@ -1,4 +1,3 @@
-import './App.css';
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import LandingPage from './components/landingPage/LandingPage';
@@ -9,7 +8,7 @@ import Detail from './components/detail/Detail';
 
 export default function App() {
   return(
-    <div className='App'>
+    <div>
       <Routes>
       <Route path='/drivers/create' element={<CreateDriver/>} />
       <Route path='/' element={<LandingPage/>} />

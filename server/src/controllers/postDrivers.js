@@ -12,17 +12,17 @@ const postDrivers = async (req, res) => {
         })
         
         await newDriver.addTeams(teams);
-        const allDriver = await Driver.findAll(
-            {include: {
-                model: Team,
-                attributes: ["name"],
-                through: {
-                    attributes: []
-                }
-            }}
-        );
+        // const allDriver = await Driver.findAll(
+        //     {include: {
+        //         model: Team,
+        //         attributes: ["name"],
+        //         through: {
+        //             attributes: []
+        //         }
+        //     }}
+        // );
         //console.log(teams)
-        return res.status(200).json(allDriver);
+        return res.status(200).json(newDriver);
 
     }catch(error) {
         console.log(error)

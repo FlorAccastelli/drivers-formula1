@@ -46,15 +46,17 @@ import Teams from "../teams/Teams";
           <button>Create your own driver</button>
         </Link>
         < SearchBar/>
-        <select onChange={handleSortOptionChange}>
-            <option value="RESET">RESET</option>
+        <select onChange={handleSortOptionChange} defaultValue="OrderBy">
+            <option value="OrderBy" disabled={true}>ORDER BY</option>
+            <option value="RESET">Disorderly</option>
             <option value="ascName">Name (Asc)</option>
             <option value="descName">Name (Desc)</option>
             <option value="ascDob">Dob (Asc)</option>
             <option value="descDob">Dob (Desc)</option>
         </select>
         <Teams />
-        <select onChange={handleOriginOption}>
+        <select onChange={handleOriginOption} defaultValue="filterByOrigin">
+          <option value="filterByOrigin" disabled={true}>FILTER BY ORIGIN</option>
           <option value="fromDB">Drivers (DB)</option>
           <option value="fromAPI">Drivers (API)</option>
         </select>

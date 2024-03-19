@@ -1,18 +1,18 @@
 const axios = require('axios');
 const defaultImage = {url: 'https://e00-marca.uecdn.es/assets/multimedia/imagenes/2024/03/08/17099126193794.jpg'};
-const { Driver } = require('../db');
+const { Driver, Team } = require('../db');
 
 const getDrivers = async (req, res) => {
     try {
         let url;
-        let queryCondition = {raw: true};
+        let queryCondition = {include: Team};
         let queryByName = false;
         if (req.query.name) {
             let nameByQuery = req.query.name.toLowerCase()
             nameByQuery = nameByQuery[0].toUpperCase() + nameByQuery.slice(1);
 
             url = `http://localhost:5000/drivers?name.forename=${nameByQuery}`;
-            queryCondition = { where: {name: nameByQuery}, raw: true, limit: 15}
+            queryCondition = { where: {name: nameByQuery}, include: Team, limit: 15}
             queryByName = true;
         } else {
             url = 'http://localhost:5000/drivers';
@@ -20,7 +20,7 @@ const getDrivers = async (req, res) => {
         }
         
         const response  = await axios.get(url);
-
+        
         const driversDB = (await Driver.findAll(queryCondition)).map((driver) => {
             return ({
             id: driver.id, 
@@ -29,7 +29,7 @@ const getDrivers = async (req, res) => {
             image: {url: driver.image},
             dob: driver.dob,
             nationality: driver.nationality,
-            teams: driver.teams,
+            teams: driver.Teams.map(t => {return t.name}),
             description: driver.description,
             origin: "fromDB"
             })

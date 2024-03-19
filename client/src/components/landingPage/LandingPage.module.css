@@ -1,32 +1,90 @@
-@keyframes shake {
-    0% { transform: translate(0, 0); }
-    25% { transform: translate(2px, 2px); }
-    50% { transform: translate(-2px, -2px); }
-    75% { transform: translate(2px, -2px); }
-    100% { transform: translate(-2px, 2px); }
-  }
+@font-face {
+  font-family: 'Formula1, Display-Regular';
+  src: url('../../fonts/Formula1-Regular-1.ttf') format('truetype');
+}
 
 .container {
-    background-image: url('./images/wp12208345.jpg');
-    background-size: cover;
-    background-position: center;
-    height: 100vh;
-    display: flex;
-    justify-content: center; 
-    align-items: center; 
-    margin: 0;
-    overflow: hidden;
-  }
+  background-image: url('./images/wp12208345.jpg');
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
+  margin: 0;
+  overflow: hidden;
+}
 
-  .image {
-    animation: shake 0.5s infinite alternate;
-    width: 105%;
-    height: 105%;
-    background-position: center, center;
-    align-items: center;
-    margin: 0;
-    mask: 
-    radial-gradient(ellipse at center, rgba(0,0,0,0) 50%, rgba(0,0,0,1) 5%);
-    display: flex;
+.content {
+  text-align: center;
+  color: white;
+}
+
+.title {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  position: relative;
+  margin-top: 150px;
+  opacity: 0; /* El título inicialmente está oculto */
+  animation: fadeIn 1s ease forwards; /* Animación para hacer que el título se desvanezca */
+}
+
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+      top: -100px; /* Mueve el título más arriba durante la animación */
   }
-  
+  to {
+      opacity: 1;
+      top: -50px; /* Mueve el título a su posición final */
+  }
+}
+
+
+/* .titleEffect {
+  /* transform: translateY(-50%); */
+  /* position: relative; */
+  /* top: 50%; */
+ 
+
+/* Efecto de escala al pasar el cursor sobre el título */
+/* .titleEffect:hover {
+  transform: scale(1.1);
+  transition: transform 0.3s ease;
+} */
+
+
+.button {
+  padding: 10px 30px;
+  font-size: 18px;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  background-color: #050505;
+  color: #fff;
+  display: inline-block;
+  margin-top: 20px;
+  filter: drop-shadow(0 0 0.5rem #ea0b0b);
+}
+
+.button:hover {
+  background-color: #cc0000;
+}
+
+
+
+
+/* Animación shake */
+@keyframes shake {
+  0% { transform: translate(0, 0); }
+  25% { transform: translate(2px, 2px); }
+  50% { transform: translate(-2px, -2px); }
+  75% { transform: translate(2px, -2px); }
+  100% { transform: translate(-2px, 2px); }
+}
+
+.shake {
+  animation: shake 0.8s infinite;
+}
+
