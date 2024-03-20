@@ -18,6 +18,7 @@ export default function CreateDriver() {
     })
 
     const [teams, setTeams] = useState([]);
+    console.log(setTeams)
 
     useEffect( ()=>{
          axios.get(URL)
@@ -34,6 +35,14 @@ export default function CreateDriver() {
         setErrors(validation({...driverData, [event.target.name]:event.target.value }))
         setDriverData({...driverData, [event.target.name]:event.target.value })
         
+    }
+
+    const handleTeamsChange = (event) => {
+        const selectedTeams = Array.from(event.target.selectedOptions, option => option.value);
+        setDriverData(prevData => ({
+            ...prevData,
+            teams: selectedTeams
+        }));
     }
 
     const handleSubmit = async (event) => {
@@ -105,7 +114,7 @@ export default function CreateDriver() {
                 <br />
                 <label>
                     Teams asociados:
-                    <select size="5" multiple onChange={(event) => setDriverData({ ...driverData, teams: Array.from(event.target.selectedOptions, option => option.value) })}>
+                    <select size="5" multiple value={driverData.teams} onChange={handleTeamsChange}>
                         {teams.map((t) => {
                             return <option key={t.id} value={t.id}>{t.name}</option>
                         })}

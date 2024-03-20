@@ -1,10 +1,8 @@
 const charsRegex = /^[a-zA-Z\s]+$/
-const regex = /^[A-Z][a-z]*$/;
 
 function validation (data) {
     const errors = {};
-    if(!charsRegex.test(data.name)) errors.name = "No se permiten caracteres especiales en el nombre";
-    if(!regex.test(data.name)) errors.name = "Colocar la primer letra en mayúscula y el resto en minúscula"
+    // if(!charsRegex.test(data.name)) errors.name = "No se permiten caracteres especiales en el nombre";
     if(!data.name) errors.name = "Campo requerido";
     if(data.surname.length > 20) errors.surname = "La longitud debe ser de 20 caracteres como máximo";
     if(!data.surname) errors.surname = "Campo requerido";

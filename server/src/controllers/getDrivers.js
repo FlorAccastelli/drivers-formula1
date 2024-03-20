@@ -52,7 +52,7 @@ const getDrivers = async (req, res) => {
             if(queryByName) {
                 result = [...driversDB, ...driversAPI].slice(0, 15);
                 if (!result || result.length === 0) {
-                    return res.status(200).json([]) //dsps corregir
+                    return res.status(200).json([])
                 }
             } else {
                 result = [...driversDB, ...driversAPI];
