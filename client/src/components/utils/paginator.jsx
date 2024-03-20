@@ -50,7 +50,7 @@ function paginatorNav(paginador, currentPage) {
     }
 
     return(
-
+        <div className={styles.paginator}>
             <ul className={`${styles.pagination} ${styles.modal_5}`}>
                 {currentPage > 1 && 
                 <div>
@@ -76,6 +76,7 @@ function paginatorNav(paginador, currentPage) {
           </div>
         }
         </ul>
+        </div>
     );
     
     

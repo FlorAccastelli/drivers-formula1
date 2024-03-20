@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import axios from "axios";
 const URL = 'http://localhost:3003/teams'
 import { filterByTeam } from "../../redux/actions";
+import styles from "../homePage/homePage.module.css"
 
 function Teams (props) {
 
@@ -23,7 +24,7 @@ function Teams (props) {
 
       return(
         <div>
-            <select size="5" onChange={handleTeamOption} defaultValue="filterByTeam">
+            <select className={styles.selectTeams} onChange={handleTeamOption} defaultValue="filterByTeam">
                 <option value="filterByTeam" disabled={true}>FILTER BY TEAM</option>
             {teams.map((t) => {
                 return <option key={t.id} value={t.name}>{t.name}</option>

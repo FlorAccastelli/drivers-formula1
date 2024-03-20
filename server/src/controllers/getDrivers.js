@@ -29,7 +29,7 @@ const getDrivers = async (req, res) => {
             image: {url: driver.image},
             dob: driver.dob,
             nationality: driver.nationality,
-            teams: driver.Teams.map(t => {return t.name}),
+            teams: driver.Teams.map(t => {return t.name}).join(", "),
             description: driver.description,
             origin: "fromDB"
             })

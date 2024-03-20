@@ -16,10 +16,7 @@ const getDriversId = async (req, res) => {
                 const driver = { id, name, dob, nationality, teams, description };
                 driver.image = img;
                 driver.name = nameDriver;
-                // console.log(await driverDB.getTeams())
-                // const _teams = await driverDB.getTeams();
-                // driver.teams = _teams
-                // console.log(driver)
+                driver.teams = driverDB.dataValues.Teams.map(t => {return t.name}).join(", ")
                 return res.status(200).json(driver)
             }
         } else {
