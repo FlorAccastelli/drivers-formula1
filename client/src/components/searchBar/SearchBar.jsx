@@ -13,7 +13,6 @@ export default function SearchBar(props) {
 
     const search = async (event) => {
     dispatch(searchByName(name));
-    setName('');
     }
 
     return (

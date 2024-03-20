@@ -15,7 +15,6 @@ import styles from "./homePage.module.css"
     const driversPage = useSelector((state)=>state.driversPage);
 
     useEffect(()=>{
-      dispatch(getDrivers())
       dispatch(getPage(currentPage))
     }, [])
 
