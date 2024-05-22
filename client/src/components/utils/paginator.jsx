@@ -3,7 +3,7 @@ import styles from '../homePage/homePage.module.css'
 import { getDrivers, getPage } from '../../redux/actions';
 import { useDispatch, useSelector } from 'react-redux';
 
-function paginator(lista, perPage = 9) {
+function paginator(lista, perPage = 8) {
     const pages = [];
     for (let inicio = 0; inicio <= lista.length - 1; inicio=inicio+perPage) {
         const final = inicio + perPage;
